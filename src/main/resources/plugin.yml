@@ -4,3 +4,5 @@ main: me.aroze.parkourthingy.ParkourThingy
 api-version: 1.18
 authors: [ Aroze ]
 description: Generates parkour jumps for you
+commands:
+  testgenerate: {}
