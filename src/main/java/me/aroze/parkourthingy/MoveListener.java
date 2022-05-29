@@ -1,8 +1,11 @@
 package me.aroze.parkourthingy;
 
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+
+import java.util.ArrayList;
 
 public class MoveListener implements Listener {
 
@@ -11,7 +14,23 @@ public class MoveListener implements Listener {
 
         if (e.getPlayer().hasPermission("parkourthingy.admin")) {
 
-            //
+            ArrayList<Location> blocksBelow = new ArrayList<Location>();
+
+            Location blockBelow = e.getPlayer().getLocation().add(0, -1, 0);
+
+            blocksBelow.add(blockBelow);
+            blocksBelow.add(blockBelow.clone().add(0,0,1));
+            blocksBelow.add(blockBelow.clone().add(0,0,-1));
+
+            blocksBelow.add(blockBelow.clone().add(1,0,1));
+            blocksBelow.add(blockBelow.clone().add(1,0,-1));
+            blocksBelow.add(blockBelow.clone().add(1,0,0));
+
+            blocksBelow.add(blockBelow.clone().add(-1,0,1));
+            blocksBelow.add(blockBelow.clone().add(-1,0,-1));
+            blocksBelow.add(blockBelow.clone().add(-1,0,0));
+
+
 
         }
 
