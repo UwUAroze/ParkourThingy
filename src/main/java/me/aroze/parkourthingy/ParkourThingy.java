@@ -3,12 +3,13 @@ package me.aroze.parkourthingy;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-
 public final class ParkourThingy extends JavaPlugin {
 
     @Override
     public void onEnable() {
         // Plugin startup logic
+        addCommand("testgenerate", new TestGenerate());
+        addListener(new MoveListener());
 
     }
 
@@ -23,6 +24,10 @@ public final class ParkourThingy extends JavaPlugin {
 
     private void addListener(Listener listener) {
         getServer().getPluginManager().registerEvents(listener, this);
+    }
+
+    public static ParkourThingy getInstance() {
+        return getPlugin(ParkourThingy.class);
     }
 
 
