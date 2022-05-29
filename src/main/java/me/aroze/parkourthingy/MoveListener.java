@@ -20,12 +20,8 @@ public class MoveListener implements Listener {
         if (!(e.getPlayer().isOnGround())) return;
 
         ArrayList<Block> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
-
-
-        Bukkit.broadcastMessage("a");
         
         if (blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer()))) {
-            Bukkit.broadcastMessage("b");
 
             Block block = TestGenerate.parkourNextJump.get(e.getPlayer());
 
