@@ -1,6 +1,8 @@
 package me.aroze.parkourthingy;
 
+import jdk.incubator.vector.VectorOperators;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -12,10 +14,25 @@ public class MoveListener implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
 
-        if (e.getPlayer().hasPermission("parkourthingy.admin")) {
+        if (!e.getPlayer().hasPermission("parkourthingy.admin")) return;
+        if (!e.getPlayer().isOnGround()) return;
 
-            ArrayList<Location> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
+        ArrayList<Location> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
 
+
+
+        for (Location block : blocksBelow) {
+            if (TestGenerate.parkourNextJump.get(e.getPlayer()) == block) {
+
+                block.getBlock().setType(Material.DIRT);
+                TestGenerate.parkourLastJump.put(e.getPlayer(), block);
+
+                Location nextJump = block.clone().add(2,0,0);
+                TestGenerate.parkourNextJump.put(e.getPlayer(), nextJump);
+                nextJump.getBlock().setType(Material.WHITE_CONCRETE);
+
+
+            }
         }
 
     }
