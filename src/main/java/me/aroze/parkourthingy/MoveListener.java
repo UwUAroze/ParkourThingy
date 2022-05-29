@@ -37,21 +37,6 @@ public class MoveListener implements Listener {
 
         }
 
-        for (Location block : blocksBelow) {
-            if (TestGenerate.parkourNextJump.get(e.getPlayer()) == block) {
-                Bukkit.broadcastMessage("b");
-
-                block.getBlock().setType(Material.DIRT);
-                TestGenerate.parkourLastJump.put(e.getPlayer(), block);
-
-                Location nextJump = block.clone().add(2,0,0);
-                TestGenerate.parkourNextJump.put(e.getPlayer(), nextJump);
-                nextJump.getBlock().setType(Material.WHITE_CONCRETE);
-
-
-            }
-        }
-
     }
 
     public ArrayList<Location> getBlocksBelow(Location loc) {
