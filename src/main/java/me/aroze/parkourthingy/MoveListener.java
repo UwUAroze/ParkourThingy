@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -20,10 +21,13 @@ public class MoveListener implements Listener {
         if (!(e.getPlayer().isOnGround())) return;
 
         ArrayList<Block> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
-        
+
         if (blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer()))) {
 
             Block block = TestGenerate.parkourNextJump.get(e.getPlayer());
+            Location blockMiddle = new Location(e.getPlayer().getWorld(), block.getX() + 0.5, block.getY(), block.getZ() + 0.5);
+
+            if (blockMiddle.distance(e.getPlayer().getLocation()) > 0.52) return;
 
             block.setType(Material.DIRT);
             TestGenerate.parkourLastJump.put(e.getPlayer(), block);
