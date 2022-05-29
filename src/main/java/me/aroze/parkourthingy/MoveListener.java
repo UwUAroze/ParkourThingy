@@ -41,5 +41,17 @@ public class MoveListener implements Listener {
         return blocksBelow;
     }
 
+    public ArrayList<Location> getNonAirBlocksBelow(Location loc) {
+
+        ArrayList<Location> blocksBelow = getBlocksBelow(loc);
+        for (Location block : blocksBelow) {
+            if (block.getBlock().getType().equals(org.bukkit.Material.AIR)) {
+                blocksBelow.remove(block);
+            }
+        }
+
+        return blocksBelow;
+    }
+
 
 }
