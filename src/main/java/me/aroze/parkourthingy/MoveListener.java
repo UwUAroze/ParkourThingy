@@ -18,11 +18,10 @@ public class MoveListener implements Listener {
     public void onMove(PlayerMoveEvent e) {
 
         if (!(e.getPlayer().hasPermission("parkourthingy.admin"))) return;
-        if (!(e.getPlayer().isOnGround())) return;
 
         ArrayList<Block> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
 
-        if (blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer()))) {
+        if (TestGenerate.parkourNextJump.get(e.getPlayer()).getY() - e.getPlayer().getLocation().getY() >= 0 && TestGenerate.parkourNextJump.get(e.getPlayer()).getY() - e.getPlayer().getLocation().getY() < 0.4) {
 
             Block block = TestGenerate.parkourNextJump.get(e.getPlayer());
             Location blockMiddle = new Location(e.getPlayer().getWorld(), block.getX() + 0.5, block.getY(), block.getZ() + 0.5);
