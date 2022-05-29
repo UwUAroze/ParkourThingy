@@ -14,7 +14,7 @@ public class MoveListener implements Listener {
 
         if (e.getPlayer().hasPermission("parkourthingy.admin")) {
 
-            ArrayList<Location> blocksBelow = getBlocksBelow(e.getPlayer().getLocation());
+            ArrayList<Location> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
 
         }
 
