@@ -4,6 +4,7 @@ import jdk.incubator.vector.VectorOperators;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -18,7 +19,7 @@ public class MoveListener implements Listener {
         if (!(e.getPlayer().hasPermission("parkourthingy.admin"))) return;
         if (!(e.getPlayer().isOnGround())) return;
 
-        ArrayList<Location> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
+        ArrayList<Block> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
 
 
         Bukkit.broadcastMessage("a");
@@ -26,47 +27,48 @@ public class MoveListener implements Listener {
         if (blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer()))) {
             Bukkit.broadcastMessage("b");
 
-            Location block = TestGenerate.parkourNextJump.get(e.getPlayer());
+            Block block = TestGenerate.parkourNextJump.get(e.getPlayer());
 
-            block.getBlock().setType(Material.DIRT);
+            block.setType(Material.DIRT);
             TestGenerate.parkourLastJump.put(e.getPlayer(), block);
 
-            Location nextJump = block.clone().add(2,0,0);
+            Block nextJump = block.getLocation().add(2,0,0).getBlock();
             TestGenerate.parkourNextJump.put(e.getPlayer(), nextJump);
-            nextJump.getBlock().setType(Material.WHITE_CONCRETE);
+            nextJump.setType(Material.WHITE_CONCRETE);
+            Bukkit.broadcastMessage("Next jump: " + nextJump.getX() + " " + nextJump.getY() + " " + nextJump.getZ());
 
         }
 
     }
 
-    public ArrayList<Location> getBlocksBelow(Location loc) {
+    public ArrayList<Block> getBlocksBelow(Location loc) {
 
-        ArrayList<Location> blocksBelow = new ArrayList<>();
+        ArrayList<Block> blocksBelow = new ArrayList<>();
 
         Location blockBelow = loc.add(0, -1, 0);
 
-        blocksBelow.add(blockBelow);
-        blocksBelow.add(blockBelow.clone().add(0,0,1));
-        blocksBelow.add(blockBelow.clone().add(0,0,-1));
+        blocksBelow.add(blockBelow.getBlock());
+        blocksBelow.add(blockBelow.clone().add(0,0,1).getBlock());
+        blocksBelow.add(blockBelow.clone().add(0,0,-1).getBlock());
 
-        blocksBelow.add(blockBelow.clone().add(1,0,1));
-        blocksBelow.add(blockBelow.clone().add(1,0,-1));
-        blocksBelow.add(blockBelow.clone().add(1,0,0));
+        blocksBelow.add(blockBelow.clone().add(1,0,1).getBlock());
+        blocksBelow.add(blockBelow.clone().add(1,0,-1).getBlock());
+        blocksBelow.add(blockBelow.clone().add(1,0,0).getBlock());
 
-        blocksBelow.add(blockBelow.clone().add(-1,0,1));
-        blocksBelow.add(blockBelow.clone().add(-1,0,-1));
-        blocksBelow.add(blockBelow.clone().add(-1,0,0));
+        blocksBelow.add(blockBelow.clone().add(-1,0,1).getBlock());
+        blocksBelow.add(blockBelow.clone().add(-1,0,-1).getBlock());
+        blocksBelow.add(blockBelow.clone().add(-1,0,0).getBlock());
 
         return blocksBelow;
     }
 
-    public ArrayList<Location> getNonAirBlocksBelow(Location loc) {
+    public ArrayList<Block> getNonAirBlocksBelow(Location loc) {
 
-        ArrayList<Location> blocksBelow = getBlocksBelow(loc);
-        ArrayList<Location> valuesToRemove = new ArrayList<>();
+        ArrayList<Block> blocksBelow = getBlocksBelow(loc);
+        ArrayList<Block> valuesToRemove = new ArrayList<>();
 
-        for (Location block : blocksBelow) {
-            if (block.getBlock().getType() == org.bukkit.Material.AIR) {
+        for (Block block : blocksBelow) {
+            if (block.getType() == org.bukkit.Material.AIR) {
                 valuesToRemove.add(block);
             }
         }
