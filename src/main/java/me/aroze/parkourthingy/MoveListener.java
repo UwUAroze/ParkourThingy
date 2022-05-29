@@ -27,7 +27,7 @@ public class MoveListener implements Listener {
             Block block = TestGenerate.parkourNextJump.get(e.getPlayer());
             Location blockMiddle = new Location(e.getPlayer().getWorld(), block.getX() + 0.5, block.getY(), block.getZ() + 0.5);
 
-            if (blockMiddle.distance(e.getPlayer().getLocation()) > 0.52) return;
+            if (blockMiddle.distance(e.getPlayer().getLocation()) > 1.52) return;
 
             block.setType(Material.DIRT);
             TestGenerate.parkourLastJump.put(e.getPlayer(), block);
