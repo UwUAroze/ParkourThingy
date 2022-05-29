@@ -18,6 +18,7 @@
     </properties>
 
     <build>
+        <finalName>ParkourThingy</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
