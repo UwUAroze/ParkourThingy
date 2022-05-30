@@ -22,6 +22,7 @@ public class TestGenerate implements CommandExecutor {
     public static HashMap<Player, Block> parkourNextNextNext = new HashMap<>();
 
     public static ArrayList<Player> playingParkour = new ArrayList<>();
+    public static HashMap<Player, Integer> parkourJumps = new HashMap<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -32,6 +33,11 @@ public class TestGenerate implements CommandExecutor {
         }
 
         Player player = (Player) sender;
+
+        if (playingParkour.contains(player)) {
+            sender.sendMessage(ChatUtils.color("&#ff6e6e⚠ &#ff7f6eYou're already playing! smh!"));
+            return true;
+        }
 
         playingParkour.add(player);
 

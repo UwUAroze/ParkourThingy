@@ -1,5 +1,6 @@
 package me.aroze.parkourthingy;
 
+import me.aroze.parkourthingy.util.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -30,7 +31,7 @@ public class MoveListener implements Listener {
             Block nextNextNextJump = TestGenerate.parkourNextNextNext.get(e.getPlayer());
 
             if (playerY < nextJumpY && playerY < lastJumpY) {
-                Bukkit.broadcastMessage("You fell!");
+                Bukkit.broadcastMessage(ChatUtils.color("&7You fell after &c" + TestGenerate.parkourJumps.get(e.getPlayer()) + " &7jumps!"));
                 playingParkour.remove(e.getPlayer());
 
                 nextJump.setType(Material.RED_CONCRETE);
@@ -42,6 +43,7 @@ public class MoveListener implements Listener {
             if (!(blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer())))) return;
 
             nextJump.setType(Material.GRAY_CONCRETE);
+            TestGenerate.parkourJumps.put(e.getPlayer(), TestGenerate.parkourJumps.get(e.getPlayer()) + 1);
 
             Block newNextJump = nextNextJump;
             Block newNextNextJump = nextNextNextJump;
