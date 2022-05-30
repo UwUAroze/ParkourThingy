@@ -23,8 +23,6 @@ public class MoveListener implements Listener {
 
             if (!(blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer())))) return;
 
-            Bukkit.broadcastMessage("" + (TestGenerate.parkourNextJump.get(e.getPlayer()).getY() - e.getPlayer().getLocation().getY()));
-
             Block block = TestGenerate.parkourNextJump.get(e.getPlayer());
 
             block.setType(Material.DIRT);
@@ -38,6 +36,7 @@ public class MoveListener implements Listener {
             TestGenerate.parkourNextJump.put(e.getPlayer(), nextJump);
             nextJump.setType(Material.WHITE_CONCRETE);
             Bukkit.broadcastMessage("Next jump: " + nextJump.getX() + " " + nextJump.getY() + " " + nextJump.getZ());
+            Bukkit.broadcastMessage(e.getPlayer().getLocation().getY() + "");
 
     }
 
