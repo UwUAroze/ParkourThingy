@@ -25,16 +25,20 @@ public class MoveListener implements Listener {
             int nextJumpY = TestGenerate.parkourNextJump.get(e.getPlayer()).getY();
             int lastJumpY = TestGenerate.parkourLastJump.get(e.getPlayer()).getY();
 
+            Block nextJump = TestGenerate.parkourNextJump.get(e.getPlayer());
+            Block nextNextJump = TestGenerate.parkourNextNext.get(e.getPlayer());
+            Block nextNextNextJump = TestGenerate.parkourNextNextNext.get(e.getPlayer());
+
             if (playerY < nextJumpY && playerY < lastJumpY) {
                 Bukkit.broadcastMessage("You fell!");
+                playingParkour.remove(e.getPlayer());
+                nextJump.setType(Material.RED_CONCRETE);
+                nextNextJump.setType(Material.AIR);
+                nextNextNextJump.setType(Material.AIR);
                 return;
             }
 
             if (!(blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer())))) return;
-
-            Block nextJump = TestGenerate.parkourNextJump.get(e.getPlayer());
-            Block nextNextJump = TestGenerate.parkourNextNext.get(e.getPlayer());
-            Block nextNextNextJump = TestGenerate.parkourNextNextNext.get(e.getPlayer());
 
             nextJump.setType(Material.GRAY_CONCRETE);
 
