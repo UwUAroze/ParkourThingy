@@ -41,6 +41,10 @@ public class MoveListener implements Listener {
 
     }
 
+    public static int randInt(int min, int max) {
+        return min + (int) (Math.random() * ((max - min) + 1));
+    }
+
     public ArrayList<Block> getBlocksBelow(Location loc) {
 
         ArrayList<Block> blocksBelow = new ArrayList<>();
