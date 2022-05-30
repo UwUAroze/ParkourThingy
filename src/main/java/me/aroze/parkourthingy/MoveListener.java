@@ -32,6 +32,7 @@ public class MoveListener implements Listener {
             if (playerY < nextJumpY && playerY < lastJumpY) {
                 Bukkit.broadcastMessage("You fell!");
                 playingParkour.remove(e.getPlayer());
+
                 nextJump.setType(Material.RED_CONCRETE);
                 nextNextJump.setType(Material.AIR);
                 nextNextNextJump.setType(Material.AIR);
@@ -52,9 +53,7 @@ public class MoveListener implements Listener {
             TestGenerate.parkourNextNext.put(e.getPlayer(), newNextNextJump);
             TestGenerate.parkourNextNextNext.put(e.getPlayer(), newNextNextNextJump);
 
-            newNextJump.setType(Material.PINK_CONCRETE);
-            newNextNextJump.setType(Material.MAGENTA_CONCRETE);
-            newNextNextNextJump.setType(Material.PURPLE_CONCRETE);
+            newNextNextNextJump.setType(Material.PINK_CONCRETE);
 
     }
 

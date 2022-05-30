@@ -52,8 +52,8 @@ public class TestGenerate implements CommandExecutor {
         parkourNextNext.put(player, nextNextJump);
         parkourNextNextNext.put(player, nextNextNextJump);
 
-        nextJump.setType(Material.PINK_CONCRETE);
-        nextNextJump.setType(Material.MAGENTA_CONCRETE);
+        nextJump.setType(Material.PINK_WOOL);
+        nextNextJump.setType(Material.PINK_CONCRETE);
         nextNextNextJump.setType(Material.PURPLE_CONCRETE);
 
         return true;
