@@ -23,20 +23,26 @@ public class MoveListener implements Listener {
 
             if (!(blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer())))) return;
 
-            Block block = TestGenerate.parkourNextJump.get(e.getPlayer());
+            Block nextJump = TestGenerate.parkourNextJump.get(e.getPlayer());
+            Block nextNextJump = TestGenerate.parkourNextNext.get(e.getPlayer());
+            Block nextNextNextJump = TestGenerate.parkourNextNextNext.get(e.getPlayer());
 
-            block.setType(Material.DIRT);
-            TestGenerate.parkourLastJump.put(e.getPlayer(), block);
+            nextJump.setType(Material.DIRT);
+
+            Block newNextJump = nextNextJump;
+            Block newNextNextJump = nextNextNextJump;
+            Block newNextNextNextJump = newNextNextJump.getLocation().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
 
 
-            Block nextJump = block.getLocation().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
-            Block nextNextJump = nextJump.getLocation().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
-            Block nextNextNextJump = nextNextJump.getLocation().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
+            TestGenerate.parkourNextJump.put(e.getPlayer(), newNextJump);
+            TestGenerate.parkourNextNext.put(e.getPlayer(), newNextNextJump);
+            TestGenerate.parkourNextNextNext.put(e.getPlayer(), newNextNextNextJump);
 
+            newNextJump.setType(Material.LIME_CONCRETE);
+            newNextNextJump.setType(Material.YELLOW_CONCRETE);
+            newNextNextNextJump.setType(Material.ORANGE_CONCRETE);
 
-            TestGenerate.parkourNextJump.put(e.getPlayer(), nextJump);
-            nextJump.setType(Material.WHITE_CONCRETE);
-            Bukkit.broadcastMessage("Next jump: " + nextJump.getX() + " " + nextJump.getY() + " " + nextJump.getZ());
+            Bukkit.broadcastMessage("Next jump: " + newNextJump.getX() + " " + newNextJump.getY() + " " + newNextJump.getZ());
 
     }
 
