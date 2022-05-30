@@ -10,10 +10,14 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.ArrayList;
 
+import static me.aroze.parkourthingy.TestGenerate.playingParkour;
+
 public class MoveListener implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
+
+        if (!(playingParkour.contains(e.getPlayer()))) return;
 
         ArrayList<Block> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
 

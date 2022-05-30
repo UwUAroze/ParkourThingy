@@ -8,6 +8,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static me.aroze.parkourthingy.MoveListener.randInt;
@@ -19,6 +21,8 @@ public class TestGenerate implements CommandExecutor {
     public static HashMap<Player, Block> parkourNextNext = new HashMap<>();
     public static HashMap<Player, Block> parkourNextNextNext = new HashMap<>();
 
+    public static ArrayList<Player> playingParkour = new ArrayList<>();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -28,6 +32,8 @@ public class TestGenerate implements CommandExecutor {
         }
 
         Player player = (Player) sender;
+
+        playingParkour.add(player);
 
         Block startingBlock = player.getLocation().add(0, -1, 0).getBlock();
         startingBlock.setType(Material.WHITE_CONCRETE);
