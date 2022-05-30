@@ -21,7 +21,12 @@ public class MoveListener implements Listener {
 
         ArrayList<Block> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
 
-        if (TestGenerate.parkourNextJump.get(e.getPlayer()).getY() - e.getPlayer().getLocation().getY() >= 0 && TestGenerate.parkourNextJump.get(e.getPlayer()).getY() - e.getPlayer().getLocation().getY() < 0.4) {
+        double diff = (TestGenerate.parkourNextJump.get(e.getPlayer()).getY() - e.getPlayer().getLocation().getY());
+        if (diff <= -1 && diff > -1.5) {
+
+            if (diff == -1 && !(e.getPlayer().isOnGround())) return;
+
+            Bukkit.broadcastMessage("" + (TestGenerate.parkourNextJump.get(e.getPlayer()).getY() - e.getPlayer().getLocation().getY()));
 
             Block block = TestGenerate.parkourNextJump.get(e.getPlayer());
             Location blockMiddle = new Location(e.getPlayer().getWorld(), block.getX() + 0.5, block.getY(), block.getZ() + 0.5);
