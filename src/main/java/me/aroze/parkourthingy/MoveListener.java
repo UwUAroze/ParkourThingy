@@ -19,6 +19,17 @@ public class MoveListener implements Listener {
 
             if (!(blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer())))) return;
 
+
+            double playerY = e.getPlayer().getLocation().getY();
+            int nextJumpY = TestGenerate.parkourNextJump.get(e.getPlayer()).getY();
+            int lastJumpY = TestGenerate.parkourLastJump.get(e.getPlayer()).getY();
+
+            if (playerY < nextJumpY && playerY < lastJumpY) {
+                e.getPlayer().sendMessage("You fell!");
+                return;
+            }
+
+
             Block nextJump = TestGenerate.parkourNextJump.get(e.getPlayer());
             Block nextNextJump = TestGenerate.parkourNextNext.get(e.getPlayer());
             Block nextNextNextJump = TestGenerate.parkourNextNextNext.get(e.getPlayer());
