@@ -1,6 +1,5 @@
 package me.aroze.parkourthingy;
 
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -9,6 +8,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+
+import static me.aroze.parkourthingy.MoveListener.randInt;
 
 public class TestGenerate implements CommandExecutor {
 
@@ -30,6 +31,17 @@ public class TestGenerate implements CommandExecutor {
         parkourNextNext.put(player, startingBlock);
         parkourNextNextNext.put(player, startingBlock);
 
+        Block nextJump = startingBlock.getLocation().clone().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
+        Block nextNextJump = nextJump.getLocation().clone().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
+        Block nextNextNextJump = nextNextJump.getLocation().clone().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
+
+        parkourNextJump.put(player, nextJump);
+        parkourNextNext.put(player, nextNextJump);
+        parkourNextNextNext.put(player, nextNextNextJump);
+
+        nextJump.setType(Material.PINK_CONCRETE);
+        nextNextJump.setType(Material.MAGENTA_CONCRETE);
+        nextNextNextJump.setType(Material.PURPLE_CONCRETE);
 
         return true;
     }
