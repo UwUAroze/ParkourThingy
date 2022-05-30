@@ -41,6 +41,7 @@ public class TestGenerate implements CommandExecutor {
         Block nextNextJump = nextJump.getLocation().clone().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
         Block nextNextNextJump = nextNextJump.getLocation().clone().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
 
+        parkourLastJump.put(player, startingBlock);
         parkourNextJump.put(player, nextJump);
         parkourNextNext.put(player, nextNextJump);
         parkourNextNextNext.put(player, nextNextNextJump);
