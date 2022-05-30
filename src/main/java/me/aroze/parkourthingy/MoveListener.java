@@ -1,11 +1,9 @@
 package me.aroze.parkourthingy;
 
-import jdk.incubator.vector.VectorOperators;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -38,9 +36,9 @@ public class MoveListener implements Listener {
             TestGenerate.parkourNextNext.put(e.getPlayer(), newNextNextJump);
             TestGenerate.parkourNextNextNext.put(e.getPlayer(), newNextNextNextJump);
 
-            newNextJump.setType(Material.LIME_CONCRETE);
-            newNextNextJump.setType(Material.YELLOW_CONCRETE);
-            newNextNextNextJump.setType(Material.ORANGE_CONCRETE);
+            newNextJump.setType(Material.PINK_CONCRETE);
+            newNextNextJump.setType(Material.MAGENTA_CONCRETE);
+            newNextNextNextJump.setType(Material.PURPLE_CONCRETE);
 
             Bukkit.broadcastMessage("Next jump: " + newNextJump.getX() + " " + newNextJump.getY() + " " + newNextJump.getZ());
 
