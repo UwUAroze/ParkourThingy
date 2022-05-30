@@ -50,8 +50,6 @@ public class MoveListener implements Listener {
             newNextNextJump.setType(Material.MAGENTA_CONCRETE);
             newNextNextNextJump.setType(Material.PURPLE_CONCRETE);
 
-            Bukkit.broadcastMessage("Next jump: " + newNextJump.getX() + " " + newNextJump.getY() + " " + newNextJump.getZ());
-
     }
 
     public static int randInt(int min, int max) {
