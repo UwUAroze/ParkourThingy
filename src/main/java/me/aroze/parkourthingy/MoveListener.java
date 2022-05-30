@@ -33,7 +33,7 @@ public class MoveListener implements Listener {
             if (playerY < nextJumpY && playerY < lastJumpY) {
                 Bukkit.broadcastMessage(ChatUtils.color("&7You fell after &c" + TestGenerate.parkourJumps.get(e.getPlayer()) + " &7jumps!"));
                 playingParkour.remove(e.getPlayer());
-
+                TestGenerate.parkourJumps.remove(e.getPlayer());
                 nextJump.setType(Material.RED_CONCRETE);
                 nextNextJump.setType(Material.AIR);
                 nextNextNextJump.setType(Material.AIR);
