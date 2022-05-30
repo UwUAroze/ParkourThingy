@@ -25,7 +25,7 @@ public class MoveListener implements Listener {
             Block nextNextJump = TestGenerate.parkourNextNext.get(e.getPlayer());
             Block nextNextNextJump = TestGenerate.parkourNextNextNext.get(e.getPlayer());
 
-            nextJump.setType(Material.DIRT);
+            nextJump.setType(Material.GRAY_CONCRETE);
 
             Block newNextJump = nextNextJump;
             Block newNextNextJump = nextNextNextJump;
