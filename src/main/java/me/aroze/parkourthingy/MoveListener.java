@@ -21,27 +21,21 @@ public class MoveListener implements Listener {
 
         ArrayList<Block> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
 
-        double diff = (TestGenerate.parkourNextJump.get(e.getPlayer()).getY() - e.getPlayer().getLocation().getY());
-        if (diff <= -1 && diff > -1.5) {
-
-            if (diff == -1 && !(e.getPlayer().isOnGround())) return;
+            if (!(blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer())))) return;
 
             Bukkit.broadcastMessage("" + (TestGenerate.parkourNextJump.get(e.getPlayer()).getY() - e.getPlayer().getLocation().getY()));
 
             Block block = TestGenerate.parkourNextJump.get(e.getPlayer());
-            Location blockMiddle = new Location(e.getPlayer().getWorld(), block.getX() + 0.5, block.getY(), block.getZ() + 0.5);
-
-            if (blockMiddle.distance(e.getPlayer().getLocation()) > 1.52) return;
 
             block.setType(Material.DIRT);
             TestGenerate.parkourLastJump.put(e.getPlayer(), block);
 
             Block nextJump = block.getLocation().add(2,0,0).getBlock();
+
+
             TestGenerate.parkourNextJump.put(e.getPlayer(), nextJump);
             nextJump.setType(Material.WHITE_CONCRETE);
             Bukkit.broadcastMessage("Next jump: " + nextJump.getX() + " " + nextJump.getY() + " " + nextJump.getZ());
-
-        }
 
     }
 
@@ -52,16 +46,14 @@ public class MoveListener implements Listener {
         Location blockBelow = loc.add(0, -1, 0);
 
         blocksBelow.add(blockBelow.getBlock());
-        blocksBelow.add(blockBelow.clone().add(0,0,1).getBlock());
-        blocksBelow.add(blockBelow.clone().add(0,0,-1).getBlock());
+        blocksBelow.add(blockBelow.clone().add(0,0,0.3).getBlock());
+        blocksBelow.add(blockBelow.clone().add(0,0,-0.3).getBlock());
 
-        blocksBelow.add(blockBelow.clone().add(1,0,1).getBlock());
-        blocksBelow.add(blockBelow.clone().add(1,0,-1).getBlock());
-        blocksBelow.add(blockBelow.clone().add(1,0,0).getBlock());
-
-        blocksBelow.add(blockBelow.clone().add(-1,0,1).getBlock());
-        blocksBelow.add(blockBelow.clone().add(-1,0,-1).getBlock());
-        blocksBelow.add(blockBelow.clone().add(-1,0,0).getBlock());
+        blocksBelow.add(blockBelow.clone().add(0.3,0,0.3).getBlock());
+        blocksBelow.add(blockBelow.clone().add(0.3,0,-0.3).getBlock());
+        blocksBelow.add(blockBelow.clone().add(-0.3,0,0.3).getBlock());
+        blocksBelow.add(blockBelow.clone().add(-0.3,0,-0.3).getBlock());
+        blocksBelow.add(blockBelow.clone().add(-0.3,0,0.3).getBlock());
 
         return blocksBelow;
     }
