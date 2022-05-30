@@ -41,6 +41,7 @@ public class MoveListener implements Listener {
             Block newNextNextNextJump = newNextNextJump.getLocation().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
 
 
+            TestGenerate.parkourLastJump.put(e.getPlayer(), nextJump);
             TestGenerate.parkourNextJump.put(e.getPlayer(), newNextJump);
             TestGenerate.parkourNextNext.put(e.getPlayer(), newNextNextJump);
             TestGenerate.parkourNextNextNext.put(e.getPlayer(), newNextNextNextJump);
