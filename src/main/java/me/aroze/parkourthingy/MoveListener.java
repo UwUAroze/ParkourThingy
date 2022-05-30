@@ -36,7 +36,6 @@ public class MoveListener implements Listener {
             TestGenerate.parkourNextJump.put(e.getPlayer(), nextJump);
             nextJump.setType(Material.WHITE_CONCRETE);
             Bukkit.broadcastMessage("Next jump: " + nextJump.getX() + " " + nextJump.getY() + " " + nextJump.getZ());
-            Bukkit.broadcastMessage(e.getPlayer().getLocation().getY() + "");
 
     }
 
