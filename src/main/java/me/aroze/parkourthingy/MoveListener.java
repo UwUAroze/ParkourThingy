@@ -32,7 +32,7 @@ public class MoveListener implements Listener {
 
             int increaseX = (int) ((Math.random() * 1) + 2);
 
-            Block nextJump = block.getLocation().add(2,0,0).getBlock();
+            Block nextJump = block.getLocation().add(increaseX,0,0).getBlock();
 
 
             TestGenerate.parkourNextJump.put(e.getPlayer(), nextJump);
