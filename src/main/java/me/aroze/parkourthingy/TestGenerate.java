@@ -54,7 +54,7 @@ public class TestGenerate implements CommandExecutor {
 
         nextJump.setType(Material.PINK_CONCRETE);
         nextNextJump.setType(Material.PINK_CONCRETE);
-        nextNextNextJump.setType(Material.PURPLE_CONCRETE);
+        nextNextNextJump.setType(Material.PINK_CONCRETE);
 
         return true;
     }
