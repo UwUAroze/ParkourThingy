@@ -54,12 +54,13 @@ public class MoveListener implements Listener {
             TestGenerate.parkourNextNext.put(e.getPlayer(), newNextNextJump);
             TestGenerate.parkourNextNextNext.put(e.getPlayer(), newNextNextNextJump);
 
-            nextJump.setType(Material.GRAY_CONCRETE);
+            if (nextJump.getType() == Material.PINK_CONCRETE) nextJump.setType(Material.GRAY_CONCRETE);
 
             if ((TestGenerate.parkourJumps.get(e.getPlayer()) + 3) % 15 == 0) {
                 newNextNextNextJump.setType(Material.LIGHT_BLUE_CONCRETE);
                 return;
             }
+
             newNextNextNextJump.setType(Material.PINK_CONCRETE);
 
 
