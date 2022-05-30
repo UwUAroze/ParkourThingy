@@ -28,11 +28,10 @@ public class MoveListener implements Listener {
             block.setType(Material.DIRT);
             TestGenerate.parkourLastJump.put(e.getPlayer(), block);
 
-            int increaseX = randInt(2,3);
-            int increaseY = randInt(-1,1);
-            int increaseZ = randInt(2,3);
 
-            Block nextJump = block.getLocation().add(increaseX,increaseY,increaseZ).getBlock();
+            Block nextJump = block.getLocation().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
+            Block nextNextJump = nextJump.getLocation().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
+            Block nextNextNextJump = nextNextJump.getLocation().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
 
 
             TestGenerate.parkourNextJump.put(e.getPlayer(), nextJump);
