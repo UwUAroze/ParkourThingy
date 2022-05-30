@@ -42,7 +42,6 @@ public class MoveListener implements Listener {
 
             if (!(blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer())))) return;
 
-            nextJump.setType(Material.GRAY_CONCRETE);
             TestGenerate.parkourJumps.put(e.getPlayer(), TestGenerate.parkourJumps.get(e.getPlayer()) + 1);
 
             Block newNextJump = nextNextJump;
@@ -55,7 +54,14 @@ public class MoveListener implements Listener {
             TestGenerate.parkourNextNext.put(e.getPlayer(), newNextNextJump);
             TestGenerate.parkourNextNextNext.put(e.getPlayer(), newNextNextNextJump);
 
+            if (TestGenerate.parkourJumps.get(e.getPlayer()) % 15 == 0) {
+                newNextNextNextJump.setType(Material.LIGHT_BLUE_CONCRETE);
+                nextJump.setType(Material.LIGHT_BLUE_CONCRETE);
+                return;
+            }
             newNextNextNextJump.setType(Material.PINK_CONCRETE);
+            nextJump.setType(Material.GRAY_CONCRETE);
+
 
     }
 
