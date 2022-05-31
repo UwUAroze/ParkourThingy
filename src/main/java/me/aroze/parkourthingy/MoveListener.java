@@ -78,10 +78,20 @@ public class MoveListener implements Listener {
 
         Block newNextNextNextJump = null;
 
+        int addY = randInt(-1, 1);
         int addX = randInt(0,5);
+
+        if (addX == 5 & maxDistance.get(addX) == 5) {
+            maxDistance.put(addX, 4);
+        }
+
+        if (addX == 5 || maxDistance.get(addX) == 5) {
+            if (addY > 1) addY--;
+        }
+
         int addZ = randInt(0,maxDistance.get(addX));
 
-        newNextNextNextJump = nextNextNextJump.getLocation().add(addX, randInt(-1, 1), addZ).getBlock();
+        newNextNextNextJump = nextNextNextJump.getLocation().add(addX, addY, addZ).getBlock();
 
 
         TestGenerate.parkourLastJump.put(e.getPlayer(), nextJump);
