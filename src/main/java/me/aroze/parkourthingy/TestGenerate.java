@@ -61,7 +61,7 @@ public class TestGenerate implements CommandExecutor {
         parkourNextNext.put(player, nextNextJump);
         parkourNextNextNext.put(player, nextNextNextJump);
 
-        nextJump.setType(blockPallet.get(randInt(0, blockPallet.size() - 1))));
+        nextJump.setType(blockPallet.get(randInt(0, blockPallet.size() - 1)));
         nextNextJump.setType(blockPallet.get(randInt(0, blockPallet.size() - 1)));
         nextNextNextJump.setType(blockPallet.get(randInt(0, blockPallet.size() - 1)));
 
