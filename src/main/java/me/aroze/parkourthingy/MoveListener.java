@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.aroze.parkourthingy.ParkourThingy.blockPallet;
 import static me.aroze.parkourthingy.TestGenerate.playingParkour;
 
 public class MoveListener implements Listener {
@@ -58,7 +59,7 @@ public class MoveListener implements Listener {
             return;
         }
 
-        newNextNextNextJump.setType(Material.PINK_CONCRETE);
+        newNextNextNextJump.setType(blockPallet.get(randInt(0, blockPallet.size() - 1)));
 
 
     }
