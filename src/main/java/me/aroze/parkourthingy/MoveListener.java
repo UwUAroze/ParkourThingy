@@ -51,25 +51,25 @@ public class MoveListener implements Listener {
         Map<Integer,Integer> maxDistance = new HashMap<>();
 
         //Default values (x, z)
-        maxDistance.put(0, 0);
         maxDistance.put(1, 0);
         maxDistance.put(2, 0);
         maxDistance.put(3, 0);
         maxDistance.put(4, 0);
+        maxDistance.put(5, 0);
 
         // XZ axis.
 
-        for (int x = 0; x <= 4; x++) {
+        for (int x = 1; x <= 5; x++) {
             zAxis:
-            for (int z = 0; z <= 4; z++) {
+            for (int z = 1; z <= 5; z++) {
                 if (nextNextNextJump.getLocation().add(x,0,z).getBlock().getType() == Material.AIR) { //Checking if block is air
                     if (nextNextNextJump.getLocation().add(x, 1, z).getBlock().getType() == Material.AIR) { //Checking if block above is air (so player can fit)
                         if (nextNextNextJump.getLocation().add(x, 2, z).getBlock().getType() == Material.AIR) { //Checking if block 2 above is air (so player can fit)
                             maxDistance.put(x, maxDistance.get(x) + 1);
                             continue;
-                        } if (z != 0) break zAxis;
-                    } if (z != 0) break zAxis;
-                } if (z != 0) break zAxis;
+                        } break zAxis;
+                    } break zAxis;
+                } break zAxis;
             }
         }
 
