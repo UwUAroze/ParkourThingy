@@ -116,7 +116,7 @@ public class MoveListener implements Listener {
 
         // Patches for hard/impossible jumps
         int addX = randInt(0,5);
-        int addY = randInt(-1, 1);
+        int addY = randInt(0, 1);
         int addZ = randInt(0,maxZ.get(addX));
 
         if (addX >= 4 || addZ >= 4) addY = -1;
