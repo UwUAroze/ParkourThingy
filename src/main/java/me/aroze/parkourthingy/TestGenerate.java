@@ -49,6 +49,12 @@ public class TestGenerate implements CommandExecutor {
         startingBlock.setType(Material.WHITE_CONCRETE);
         player.sendMessage("Starting block: " + startingBlock.getX() + " " + startingBlock.getY() + " " + startingBlock.getZ());
 
+        parkourLastJump.put(player, startingBlock);
+        parkourNextJump.put(player, startingBlock);
+        parkourNextNext.put(player, startingBlock);
+        parkourNextNextNext.put(player, startingBlock);
+        parkourJumps.put(player, 0);
+
         generateNewBlock(player);
 
         return true;
