@@ -89,6 +89,10 @@ public class MoveListener implements Listener {
             if (addY > 0) addY--;
         }
 
+        if (addX == 0 && maxDistance.get(addX) == 0 && addY < 0) {
+            addY++;
+        }
+
         int addZ = randInt(0,maxDistance.get(addX));
 
         newNextNextNextJump = nextNextNextJump.getLocation().add(addX, addY, addZ).getBlock();
