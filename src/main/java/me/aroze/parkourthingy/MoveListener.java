@@ -58,20 +58,21 @@ public class MoveListener implements Listener {
         maxDistance.put(4, 0);
         maxDistance.put(5, 0);
 
-        // XZ axis.
+
+        //Pathfinding
 
         for (int x = 0; x <= 5; x++) {
             zAxis:
             for (int z = 0; z <= 5; z++) {
-                if (x == 0 && z == 0) continue zAxis;
+                if (x == 0 && z == 0) continue zAxis; // Skip the starting block.
                 if (nextNextNextJump.getLocation().add(x,0,z).getBlock().getType() == Material.AIR) { //Checking if block is air
                     if (nextNextNextJump.getLocation().add(x, 1, z).getBlock().getType() == Material.AIR) { //Checking if block above is air (so player can fit)
                         if (nextNextNextJump.getLocation().add(x, 2, z).getBlock().getType() == Material.AIR) { //Checking if block 2 above is air (so player can fit)
-                            maxDistance.put(x, z);
-                            continue zAxis;
-                        } break zAxis;
-                    } break zAxis;
-                } break zAxis;
+                            maxDistance.put(x, z); // if all three are air, set the max distance to this block.
+                            continue zAxis; // continue to the next block.
+                        } break zAxis; // if the block 2 above is not air, break the loop.
+                    } break zAxis; // if the block above is not air, break the loop.
+                } break zAxis; // if the block is not air, break the loop.
             }
         }
 
