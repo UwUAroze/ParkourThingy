@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static me.aroze.parkourthingy.MoveListener.generateNewBlock;
 import static me.aroze.parkourthingy.MoveListener.randInt;
 import static me.aroze.parkourthingy.ParkourThingy.blockPallet;
 
@@ -48,24 +49,7 @@ public class TestGenerate implements CommandExecutor {
         startingBlock.setType(Material.WHITE_CONCRETE);
         player.sendMessage("Starting block: " + startingBlock.getX() + " " + startingBlock.getY() + " " + startingBlock.getZ());
 
-        parkourNextJump.put(player, startingBlock);
-        parkourNextNext.put(player, startingBlock);
-        parkourNextNextNext.put(player, startingBlock);
-
-        Block nextJump = startingBlock.getLocation().clone().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
-        Block nextNextJump = nextJump.getLocation().clone().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
-        Block nextNextNextJump = nextNextJump.getLocation().clone().add(randInt(2,3),randInt(-1,1),randInt(2,3)).getBlock();
-
-        parkourLastJump.put(player, startingBlock);
-        parkourNextJump.put(player, nextJump);
-        parkourNextNext.put(player, nextNextJump);
-        parkourNextNextNext.put(player, nextNextNextJump);
-
-        nextJump.setType(blockPallet.get(randInt(0, blockPallet.size() - 1)));
-        nextNextJump.setType(blockPallet.get(randInt(0, blockPallet.size() - 1)));
-        nextNextNextJump.setType(blockPallet.get(randInt(0, blockPallet.size() - 1)));
-
-        parkourJumps.put(player, 0);
+        generateNewBlock(player);
 
         return true;
     }
