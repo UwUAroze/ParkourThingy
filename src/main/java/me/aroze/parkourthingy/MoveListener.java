@@ -109,7 +109,7 @@ public class MoveListener implements Listener {
         int addY = randInt(-1, 1);
         int addZ = randInt(0,maxZ.get(addX));
 
-        if (addX == 5 || addZ == 5) addY = -1;
+        if (addX >= 4 || addZ >= 4) addY = -1;
 
         if (addX == 5) addZ = 0;
         if (addZ == 5) addX = 0;
