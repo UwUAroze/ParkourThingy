@@ -11,18 +11,20 @@ import org.bukkit.entity.Player;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static me.aroze.parkourthingy.MoveListener.randInt;
 
 public class TestGenerate implements CommandExecutor {
 
-    public static HashMap<Player, Block> parkourLastJump = new HashMap<>();
-    public static HashMap<Player, Block> parkourNextJump = new HashMap<>();
-    public static HashMap<Player, Block> parkourNextNext = new HashMap<>();
-    public static HashMap<Player, Block> parkourNextNextNext = new HashMap<>();
+    public static Map<Player, Block> parkourLastJump = new HashMap<>();
+    public static Map<Player, Block> parkourNextJump = new HashMap<>();
+    public static Map<Player, Block> parkourNextNext = new HashMap<>();
+    public static Map<Player, Block> parkourNextNextNext = new HashMap<>();
 
-    public static ArrayList<Player> playingParkour = new ArrayList<>();
-    public static HashMap<Player, Integer> parkourJumps = new HashMap<>();
+    public static List<Player> playingParkour = new ArrayList<>();
+    public static Map<Player, Integer> parkourJumps = new HashMap<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
