@@ -78,12 +78,10 @@ public class MoveListener implements Listener {
 
         Block newNextNextNextJump = null;
 
-        newNextNextNextJump = nextNextNextJump.getLocation().add(randInt(2, 3), randInt(-1, 1), randInt(2, 3)).getBlock();
+        int addX = randInt(0,5);
+        int addZ = randInt(0,maxDistance.get(addX));
 
-        Bukkit.broadcastMessage("");
-        for (Integer key : maxDistance.keySet()) {
-            Bukkit.broadcastMessage(key + ":" + maxDistance.get(key));
-        }
+        newNextNextNextJump = nextNextNextJump.getLocation().add(addX, randInt(-1, 1), addZ).getBlock();
 
 
         TestGenerate.parkourLastJump.put(e.getPlayer(), nextJump);
