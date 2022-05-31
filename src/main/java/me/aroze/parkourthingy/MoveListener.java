@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -34,7 +35,7 @@ public class MoveListener implements Listener {
         Block nextNextJump = TestGenerate.parkourNextNext.get(e.getPlayer());
         Block nextNextNextJump = TestGenerate.parkourNextNextNext.get(e.getPlayer());
 
-        if (playerY < nextJumpY+1 && playerY < lastJumpY+1) {
+        if (playerY < nextJumpY + 1 && playerY < lastJumpY + 1) {
             Bukkit.broadcastMessage(ChatUtils.color("&7You fell after &c" + TestGenerate.parkourJumps.get(e.getPlayer()) + " &7jumps!"));
             playingParkour.remove(e.getPlayer());
             TestGenerate.parkourJumps.remove(e.getPlayer());
@@ -46,7 +47,17 @@ public class MoveListener implements Listener {
 
         if (!(blocksBelow.contains(TestGenerate.parkourNextJump.get(e.getPlayer())))) return;
 
-        TestGenerate.parkourJumps.put(e.getPlayer(), TestGenerate.parkourJumps.get(e.getPlayer()) + 1);
+        generateNewBlock(e.getPlayer());
+
+    }
+
+    public static void generateNewBlock(Player player) {
+
+        Block nextJump = TestGenerate.parkourNextJump.get(player);
+        Block nextNextJump = TestGenerate.parkourNextNext.get(player);
+        Block nextNextNextJump = TestGenerate.parkourNextNextNext.get(player);
+
+        TestGenerate.parkourJumps.put(player, TestGenerate.parkourJumps.get(player) + 1);
 
         //Pathfinding
 
@@ -129,20 +140,20 @@ public class MoveListener implements Listener {
         newNextNextNextJump = nextNextNextJump.getLocation().add(addX, addY, addZ).getBlock();
 
 
-        TestGenerate.parkourLastJump.put(e.getPlayer(), nextJump);
-        TestGenerate.parkourNextJump.put(e.getPlayer(), nextNextJump); // New next jump
-        TestGenerate.parkourNextNext.put(e.getPlayer(), nextNextNextJump); // New next next jump
-        TestGenerate.parkourNextNextNext.put(e.getPlayer(), newNextNextNextJump);
+        TestGenerate.parkourLastJump.put(player, nextJump);
+        TestGenerate.parkourNextJump.put(player, nextNextJump); // New next jump
+        TestGenerate.parkourNextNext.put(player, nextNextNextJump); // New next next jump
+        TestGenerate.parkourNextNextNext.put(player, newNextNextNextJump);
 
         if (blockPallet.contains(nextJump.getType())) nextJump.setType(Material.GRAY_CONCRETE);
 
-        if ((TestGenerate.parkourJumps.get(e.getPlayer()) + 3) % 20 == 0) {
+        if ((TestGenerate.parkourJumps.get(player) + 3) % 20 == 0) {
             newNextNextNextJump.setType(Material.PINK_CONCRETE);
             return;
         }
 
         newNextNextNextJump.setType(blockPallet.get(randInt(0, blockPallet.size() - 1)));
-        e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.BLOCK_WET_GRASS_PLACE, 1, 1);
+        player.playSound(player.getLocation(), Sound.BLOCK_WET_GRASS_PLACE, 1, 1);
 
 
     }
