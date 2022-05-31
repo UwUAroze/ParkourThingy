@@ -86,7 +86,7 @@ public class MoveListener implements Listener {
         }
 
         if (addX == 5 || maxDistance.get(addX) == 5) {
-            if (addY > 1) addY--;
+            if (addY > 0) addY--;
         }
 
         int addZ = randInt(0,maxDistance.get(addX));
