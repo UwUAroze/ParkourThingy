@@ -11,7 +11,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static me.aroze.parkourthingy.ParkourThingy.blockPallet;
 import static me.aroze.parkourthingy.TestGenerate.playingParkour;
@@ -46,58 +48,37 @@ public class MoveListener implements Listener {
 
         TestGenerate.parkourJumps.put(e.getPlayer(), TestGenerate.parkourJumps.get(e.getPlayer()) + 1);
 
-        int maxAddX = 0;
-        int maxAddZ = 0;
+        Map<Integer,Integer> maxDistance = new HashMap<>();
 
-        int maxAddXZ = 0;
+        //Default values (x, z)
+        maxDistance.put(0, 0);
+        maxDistance.put(1, 0);
+        maxDistance.put(2, 0);
+        maxDistance.put(3, 0);
+        maxDistance.put(4, 0);
 
         // XZ axis.
+
         for (int x = 0; x <= 4; x++) {
-
-
-
+            zAxis:
             for (int z = 0; z <= 4; z++) {
                 if (nextNextJump.getLocation().add(x,0,z).getBlock().getType() == Material.AIR) { //Checking if block is air
                     if (nextNextJump.getLocation().add(x, 1, z).getBlock().getType() == Material.AIR) { //Checking if block above is air (so player can fit)
                         if (nextNextJump.getLocation().add(x, 2, z).getBlock().getType() == Material.AIR) { //Checking if block 2 above is air (so player can fit)
-
-                        }
-                    }
-                }
-            }
-        }
-
-        for (int i = 1; i <= maxAddXZ; i++) {
-            if (nextNextJump.getLocation().add(i,0,0).getBlock().getType() == Material.AIR) { //Checking if block is air
-                if (nextNextJump.getLocation().add(i,1,0).getBlock().getType() == Material.AIR) { //Checking if block above is air (so player can fit)
-                    if (nextNextJump.getLocation().add(i,2,0).getBlock().getType() == Material.AIR) { //Checking if block 2 above is air (so player can fit)
-                        maxAddX++; //If all three blocks are air, we can set a block there.
-                        continue;
-                    }
-                    break; //If a block cannot be set there, we can't increase the max distance further.
-                } break; //If a block cannot be set there, we can't increase the max distance further.
-            } break; //If a block cannot be set there, we can't increase the max distance further.
-        }
-
-        // Same as above, but for Z axis.
-        for (int i = 1; i <= maxAddXZ; i++) {
-            if (nextNextJump.getLocation().add(0,0,i).getBlock().getType() == Material.AIR) {
-                if (nextNextJump.getLocation().add(0,1,i).getBlock().getType() == Material.AIR) {
-                    if (nextNextJump.getLocation().add(0,2,i).getBlock().getType() == Material.AIR) {
-                        maxAddZ++;
-                        continue;
-                    }
-                    break;
-                }
+                            maxDistance.put(x, maxDistance.get(z) + 1);
+                            continue;
+                        } break zAxis;
+                    } break zAxis;
+                } break zAxis;
             }
         }
 
         Block newNextNextNextJump = null;
-        
-        if (maxAddX >= 2 && maxAddZ >= 2) {
-            newNextNextNextJump = nextNextNextJump.getLocation().add(randInt(2, maxAddX), randInt(-1, 1), randInt(2, maxAddZ)).getBlock();
-        } else {
-            Bukkit.broadcastMessage("um");
+
+        newNextNextNextJump = nextNextNextJump.getLocation().add(randInt(2, 3), randInt(-1, 1), randInt(2, 3)).getBlock();
+
+        for (Integer key : maxDistance.keySet()) {
+            Bukkit.broadcastMessage(key + ":" + maxDistance.get(key));
         }
 
 
