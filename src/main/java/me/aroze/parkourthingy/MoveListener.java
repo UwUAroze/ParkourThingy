@@ -28,7 +28,7 @@ public class MoveListener implements Listener {
         int nextJumpY = TestGenerate.parkourNextJump.get(e.getPlayer()).getY();
         int lastJumpY = TestGenerate.parkourLastJump.get(e.getPlayer()).getY();
 
-        List<Block> blocksBelow = getNonAirBlocksBelow(e.getTo());
+        List<Block> blocksBelow = getNonAirBlocksBelow(e.getPlayer().getLocation());
 
         Block nextJump = TestGenerate.parkourNextJump.get(e.getPlayer());
         Block nextNextJump = TestGenerate.parkourNextNext.get(e.getPlayer());
@@ -62,9 +62,9 @@ public class MoveListener implements Listener {
         for (int x = 0; x <= 4; x++) {
             zAxis:
             for (int z = 0; z <= 4; z++) {
-                if (nextNextJump.getLocation().add(x,0,z).getBlock().getType() == Material.AIR) { //Checking if block is air
-                    if (nextNextJump.getLocation().add(x, 1, z).getBlock().getType() == Material.AIR) { //Checking if block above is air (so player can fit)
-                        if (nextNextJump.getLocation().add(x, 2, z).getBlock().getType() == Material.AIR) { //Checking if block 2 above is air (so player can fit)
+                if (nextNextNextJump.getLocation().add(x,0,z).getBlock().getType() == Material.AIR) { //Checking if block is air
+                    if (nextNextNextJump.getLocation().add(x, 1, z).getBlock().getType() == Material.AIR) { //Checking if block above is air (so player can fit)
+                        if (nextNextNextJump.getLocation().add(x, 2, z).getBlock().getType() == Material.AIR) { //Checking if block 2 above is air (so player can fit)
                             maxDistance.put(x, maxDistance.get(z) + 1);
                             continue;
                         } break zAxis;
