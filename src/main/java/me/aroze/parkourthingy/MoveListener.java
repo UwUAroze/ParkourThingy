@@ -114,7 +114,13 @@ public class MoveListener implements Listener {
 
         Block newNextNextNextJump = null;
 
-        int addX = randInt(0, maxX.get(randInt(0,5)));
+        int lowestMaxX = 5;
+        for (int max : maxX.values()) {
+            player.sendMessage(max + "");
+            lowestMaxX = Math.min(lowestMaxX, max);
+        }
+
+        int addX = randInt(0, lowestMaxX);
         int addY = randInt(0, 1);
         int addZ = randInt(0,maxZ.get(addX));
 
