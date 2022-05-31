@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import static me.aroze.parkourthingy.MoveListener.randInt;
+import static me.aroze.parkourthingy.ParkourThingy.blockPallet;
 
 public class TestGenerate implements CommandExecutor {
 
@@ -64,7 +65,7 @@ public class TestGenerate implements CommandExecutor {
         nextNextJump.setType(Material.PINK_CONCRETE);
         nextNextNextJump.setType(Material.PINK_CONCRETE);
 
-        parkourJumps.put(player, 0);
+        parkourJumps.put(player, randInt(0, blockPallet.size() - 1));
 
         return true;
     }
