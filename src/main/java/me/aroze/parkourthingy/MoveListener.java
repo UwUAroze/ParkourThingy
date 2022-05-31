@@ -4,6 +4,7 @@ import me.aroze.parkourthingy.util.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -60,6 +61,7 @@ public class MoveListener implements Listener {
         }
 
         newNextNextNextJump.setType(blockPallet.get(randInt(0, blockPallet.size() - 1)));
+        e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.BLOCK_WET_GRASS_PLACE, 1, 1);
 
 
     }
