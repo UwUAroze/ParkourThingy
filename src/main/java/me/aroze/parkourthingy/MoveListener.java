@@ -65,7 +65,7 @@ public class MoveListener implements Listener {
                 if (nextNextNextJump.getLocation().add(x,0,z).getBlock().getType() == Material.AIR) { //Checking if block is air
                     if (nextNextNextJump.getLocation().add(x, 1, z).getBlock().getType() == Material.AIR) { //Checking if block above is air (so player can fit)
                         if (nextNextNextJump.getLocation().add(x, 2, z).getBlock().getType() == Material.AIR) { //Checking if block 2 above is air (so player can fit)
-                            maxDistance.put(x, maxDistance.get(z) + 1);
+                            maxDistance.put(x, maxDistance.get(x) + 1);
                             continue;
                         } break zAxis;
                     } break zAxis;
@@ -78,7 +78,7 @@ public class MoveListener implements Listener {
         newNextNextNextJump = nextNextNextJump.getLocation().add(randInt(2, 3), randInt(-1, 1), randInt(2, 3)).getBlock();
 
         for (Integer key : maxDistance.keySet()) {
-            Bukkit.broadcastMessage(key + ":" + maxDistance.get(key));
+            Bukkit.broadcastMessage(key + ":" + maxDistance.get(key) + "\n");
         }
 
 
