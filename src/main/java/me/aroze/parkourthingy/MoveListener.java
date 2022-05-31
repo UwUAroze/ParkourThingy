@@ -48,6 +48,8 @@ public class MoveListener implements Listener {
 
         TestGenerate.parkourJumps.put(e.getPlayer(), TestGenerate.parkourJumps.get(e.getPlayer()) + 1);
 
+        //Pathfinding
+
         Map<Integer,Integer> maxZ = new HashMap<>();
         Map<Integer,Integer> maxX = new HashMap<>();
 
@@ -66,9 +68,6 @@ public class MoveListener implements Listener {
         maxX.put(3, 0);
         maxX.put(4, 0);
         maxX.put(5, 0);
-
-
-        //Pathfinding
 
         //Max Z from X
         for (int x = 0; x <= 5; x++) {
