@@ -78,9 +78,10 @@ public class MoveListener implements Listener {
         
         if (maxAddX >= 2 && maxAddZ >= 2) {
             newNextNextNextJump = nextNextNextJump.getLocation().add(randInt(2, maxAddX), randInt(-1, 1), randInt(2, maxAddZ)).getBlock();
+        } else {
+            Bukkit.broadcastMessage("um");
         }
-        
-        
+
 
         TestGenerate.parkourLastJump.put(e.getPlayer(), nextJump);
         TestGenerate.parkourNextJump.put(e.getPlayer(), nextNextJump); // New next jump
