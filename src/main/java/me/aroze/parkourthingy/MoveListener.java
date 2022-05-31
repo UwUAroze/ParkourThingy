@@ -118,6 +118,14 @@ public class MoveListener implements Listener {
             if (maxX.get(0) >= 1) addX = 1;
         }
 
+        if (addX == 1) {
+            if (maxX.get(1) >= 1) addX++;
+        }
+
+        if (addZ == 1) {
+            if (maxZ.get(1) >= 1) addZ++;
+        }
+
         newNextNextNextJump = nextNextNextJump.getLocation().add(addX, addY, addZ).getBlock();
 
 
