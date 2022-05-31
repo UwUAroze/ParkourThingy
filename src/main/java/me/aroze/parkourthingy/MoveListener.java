@@ -48,19 +48,29 @@ public class MoveListener implements Listener {
 
         TestGenerate.parkourJumps.put(e.getPlayer(), TestGenerate.parkourJumps.get(e.getPlayer()) + 1);
 
-        Map<Integer,Integer> maxDistance = new HashMap<>();
+        Map<Integer,Integer> maxZ = new HashMap<>();
+        Map<Integer,Integer> maxX = new HashMap<>();
 
         //Default values (x, z)
-        maxDistance.put(0, 0);
-        maxDistance.put(1, 0);
-        maxDistance.put(2, 0);
-        maxDistance.put(3, 0);
-        maxDistance.put(4, 0);
-        maxDistance.put(5, 0);
+        maxZ.put(0, 0);
+        maxZ.put(1, 0);
+        maxZ.put(2, 0);
+        maxZ.put(3, 0);
+        maxZ.put(4, 0);
+        maxZ.put(5, 0);
+
+        //Default values (z, x)
+        maxX.put(0, 0);
+        maxX.put(1, 0);
+        maxX.put(2, 0);
+        maxX.put(3, 0);
+        maxX.put(4, 0);
+        maxX.put(5, 0);
 
 
         //Pathfinding
 
+        //Max Z from X
         for (int x = 0; x <= 5; x++) {
             zAxis:
             for (int z = 0; z <= 5; z++) {
@@ -68,7 +78,7 @@ public class MoveListener implements Listener {
                 if (nextNextNextJump.getLocation().add(x,0,z).getBlock().getType() == Material.AIR) { //Checking if block is air
                     if (nextNextNextJump.getLocation().add(x, 1, z).getBlock().getType() == Material.AIR) { //Checking if block above is air (so player can fit)
                         if (nextNextNextJump.getLocation().add(x, 2, z).getBlock().getType() == Material.AIR) { //Checking if block 2 above is air (so player can fit)
-                            maxDistance.put(x, z); // if all three are air, set the max distance to this block.
+                            maxZ.put(x, z); // if all three are air, set the max distance to this block.
                             continue zAxis; // continue to the next block.
                         } break zAxis; // if the block 2 above is not air, break the loop.
                     } break zAxis; // if the block above is not air, break the loop.
@@ -76,23 +86,36 @@ public class MoveListener implements Listener {
             }
         }
 
+        //Max X from Z
+        for (int z = 0; z <= 5; z++) {
+            xAxis:
+            for (int x = 0; x <= 5; x++) {
+                if (x == 0 && z == 0) continue xAxis; // Skip the starting block.
+                if (nextNextNextJump.getLocation().add(x,0,z).getBlock().getType() == Material.AIR) { //Checking if block is air
+                    if (nextNextNextJump.getLocation().add(x, 1, z).getBlock().getType() == Material.AIR) { //Checking if block above is air (so player can fit)
+                        if (nextNextNextJump.getLocation().add(x, 2, z).getBlock().getType() == Material.AIR) { //Checking if block 2 above is air (so player can fit)
+                            maxX.put(z, x); // if all three are air, set the max distance to this block.
+                            continue xAxis; // continue to the next block.
+                        } break xAxis; // if the block 2 above is not air, break the loop.
+                    } break xAxis; // if the block above is not air, break the loop.
+                } break xAxis; // if the block is not air, break the loop.
+            }
+        }
+
         Block newNextNextNextJump = null;
 
-        int addY = randInt(-1, 1);
         int addX = randInt(0,5);
+        int addY = randInt(-1, 1);
+        int addZ = randInt(0,maxZ.get(addX));
 
-        if (addX == 5 & maxDistance.get(addX) == 5) {
-            maxDistance.put(addX, 4);
-        }
+        if (addX == 5 || addZ == 5) addY = -1;
 
-        if (addX == 5 || maxDistance.get(addX) == 5) {
-            if (addY > 0) addY--;
-        }
-
-        int addZ = randInt(0,maxDistance.get(addX));
+        if (addX == 5) addZ = 0;
+        if (addZ == 5) addX = 0;
 
         if (addX == 0 && addZ == 0) {
-            if (maxDistance.get(addX) >= 1) {addZ = 1;}
+            if (maxZ.get(0) >= 1) addZ = 1;
+            if (maxX.get(0) >= 1) addX = 1;
         }
 
         newNextNextNextJump = nextNextNextJump.getLocation().add(addX, addY, addZ).getBlock();
