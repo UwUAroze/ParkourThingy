@@ -46,6 +46,34 @@ public class MoveListener implements Listener {
 
         TestGenerate.parkourJumps.put(e.getPlayer(), TestGenerate.parkourJumps.get(e.getPlayer()) + 1);
 
+        int maxAddX = 0;
+        int maxAddZ = 0;
+
+        for (int i = 1; i <= 4; i++) {
+            if (nextNextJump.getLocation().add(i,0,0).getBlock().getType() == Material.AIR) { //Checking if block is air
+                if (nextNextJump.getLocation().add(i,1,0).getBlock().getType() == Material.AIR) { //Checking if block above is air (so player can fit)
+                    if (nextNextJump.getLocation().add(i,2,0).getBlock().getType() == Material.AIR) { //Checking if block 2 above is air (so player can fit)
+                        maxAddX++; //If all three blocks are air, we can set a block there.
+                        continue;
+                    }
+                    break; //If a block cannot be set there, we can't increase the max distance further.
+                } break; //If a block cannot be set there, we can't increase the max distance further.
+            } break; //If a block cannot be set there, we can't increase the max distance further.
+        }
+
+        // Same as above, but for Z axis.
+        for (int i = 1; i <= 4; i++) {
+            if (nextNextJump.getLocation().add(0,0,i).getBlock().getType() == Material.AIR) {
+                if (nextNextJump.getLocation().add(0,1,i).getBlock().getType() == Material.AIR) {
+                    if (nextNextJump.getLocation().add(0,2,i).getBlock().getType() == Material.AIR) {
+                        maxAddZ++;
+                        continue;
+                    }
+                    break;
+                }
+            }
+        }
+
         Block newNextNextNextJump = nextNextNextJump.getLocation().add(randInt(2, 3), randInt(-1, 1), randInt(2, 3)).getBlock();
 
         TestGenerate.parkourLastJump.put(e.getPlayer(), nextJump);
