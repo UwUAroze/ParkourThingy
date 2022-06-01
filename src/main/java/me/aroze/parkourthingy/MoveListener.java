@@ -120,7 +120,7 @@ public class MoveListener implements Listener {
             lowestMaxX = Math.min(lowestMaxX, max);
         }
 
-        int addX = randInt(0, lowestMaxX);
+        int addX = randInt(0, maxX.get(0));
         int addY = randInt(0, 1);
         int addZ = randInt(0,maxZ.get(addX));
 
